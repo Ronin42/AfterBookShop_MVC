@@ -1,6 +1,169 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Movie Website</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #2b2d42;
+            color: #fff;
+        }
 
-<p>Use this page to detail your site's privacy policy.</p>
+        .navbar {
+            background-color: #2b2d42;
+        }
+
+        .navbar-brand {
+            color: #fff;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .jumbotron {
+            background-color: #2b2d42;
+            color: #fff;
+        }
+
+        .card {
+            background-color: #3c3f54;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">My Movie Website</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">TV Shows</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Genres</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <h1>Welcome to My Movie Website!</h1>
+        <p class="lead">Find the latest movies and TV shows, and discover new favorites.</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </div>
+
+    <div class="container">
+        <h2>Featured Movies</h2>
+        <div class="card-deck">
+            <div class="card">
+                <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Movie Title</h5>
+                    <p class="card-text">This is a short description of the movie.</p>
+                    <a href="#" class="btn btn-primary">Watch Now</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Movie Title</h5>
+                    <p class="card-text">This is a short description of the movie.</p>
+                    <a href="#" class="btn btn-primary">Watch Now</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Movie Title</h5>
+                    <p class="card-text">This is a short description of the movie.</p>
+                    <a href="#" class="btn btn-primary">Watch Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Featured TV Shows</h2>
+        <div class="card-deck">
+            <div class="card">
+                <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">TV Show Title</h5>
+                    <p class="card-text">This is a short description of the TV show.</p>
+                    <a href="#" class="btn btn-primary">Watch Now</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">TV Show Title</h5>
+                    <p class="card-text">This is a short description of the TV show.</p>
+                    <a href="#" class="btn btn-primary">Watch Now</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">TV Show Title</h5>
+                    <p class="card-text">This is a short description of the TV show.</p>
+                    <a href="#" class="btn btn-primary">Watch Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Genres</h2>
+        <div class="row">
+            <div class="col-sm-4">
+                <ul class="list-unstyled">
+                    <li>Action</li>
+                    <li>Comedy</li>
+                    <li>Drama</li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <ul class="list-unstyled">
+                    <li>Horror</li>
+                    <li>Romance</li>
+                    <li>Sci-Fi</li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <ul class="list-unstyled">
+                    <li>Thriller</li>
+                    <li>Documentary</li>
+                    <li>Animation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-center text-white">
+        <p>&copy; 2023 My Movie Website</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
