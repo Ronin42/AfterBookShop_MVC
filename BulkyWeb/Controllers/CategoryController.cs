@@ -50,13 +50,13 @@ namespace BulkyWeb.Controllers
             {
                 return NotFound();
             }
-            Category? obj = _db.Categories.Find(id);
+            Category? CategoryFromDB = _db.Categories.Find(id);
 
-            if (obj == null)
+            if (CategoryFromDB == null)
             {
                 return NotFound();
             }
-            return View(obj);
+            return View(CategoryFromDB);
         }
         [HttpPost]
         public IActionResult Edit(Category obj)
@@ -72,6 +72,36 @@ namespace BulkyWeb.Controllers
                 return RedirectToAction("Index");
             }
             return View(obj);
+
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Category? CategoryFromDB = _db.Categories.Find(id);
+
+            if (CategoryFromDB == null)
+            {
+                return NotFound();
+            }
+            return View(CategoryFromDB);
+        }
+
+        [HttpPost,ActionName("Delete")]
+        public IActionResult DeletePost(int? id)
+        {
+            Category? obj = _db.Categories.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            _db.Categories.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
 
         }
 
