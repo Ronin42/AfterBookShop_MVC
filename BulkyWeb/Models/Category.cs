@@ -10,10 +10,10 @@ namespace BulkyWeb.Models
 
         [Required]
         [MaxLength(30)]
-        [DisplayName("Category Name")]
+        [DisplayName("ชื่อหมวดหมู่")]
         public string Name { get; set; }
 
-        [DisplayName("Display order")]
+        [DisplayName("ลำดับการแสดงผล")]
         [Range(1, 100,ErrorMessage ="Must be between 1-100")]
         public int DisplayOrder { get; set; }
     }

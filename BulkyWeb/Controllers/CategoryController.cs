@@ -63,7 +63,7 @@ namespace BulkyWeb.Controllers
         {
             if (obj.CategoryId == 0)
             {
-                Console.WriteLine("id = 0");
+                return NotFound();
             }
             if (ModelState.IsValid)
             {
