@@ -14,6 +14,10 @@ namespace Bulky.DataAccess.Repository
         public ICategoryRepository CategoryRepo { get; private set; }
 
         public IProductRepository productRepo { get; private set; }
+        //get; private set;: การกำหนดการเข้าถึงค่าของคุณสมบัติ productRepo โดยมีการกำหนด
+        //get ให้สามารถอ่านค่าได้
+        //และ private set ที่บังคับให้สามารถกำหนดค่าได้เฉพาะภายในคลาสเท่านั้น นั่นหมายความว่าค่าของ productRepo สามารถเข้าถึงได้จากภายนอก
+        //แต่การกำหนดค่าต้องทำภายในคลาสเท่านั้น
 
         public UnitOfWork(ApplicationDBContext db)
         { 
