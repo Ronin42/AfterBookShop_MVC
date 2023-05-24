@@ -27,37 +27,16 @@
                     <th>Price</th>
                     <th>Author</th>
                     <th>Category</th>
-                    
+                    <th></th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var obj in Model)
-                {
-                    <tr>
-                        <td>@obj.Title</td>
-                        <td>@obj.ISBN</td>
-                        <td>@obj.Price</td>
-                        <td>@obj.Author</td>
-                        <td>@obj.Category.Name</td>
-                        <td>
-                            <div class="w-75 btn-group" role="group">
-                                <a asp-controller="Product" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
-                                    <i class="bi bi-pencil-square"></i> แก้ไข
-                                </a>
-                                <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
-                                    <i class="bi bi-trash-fill"></i> ลบ
-                                </a>
-                            </div>
-                        </td>
-
-                    </tr>
-                }
-            </tbody>
+            
         </table>
 
     </div>
 </div>
 
 @section Scripts{
-    <script src="~/js/product.js"></script>
+    <script src="~/js/Product.js"></script>
+
 }

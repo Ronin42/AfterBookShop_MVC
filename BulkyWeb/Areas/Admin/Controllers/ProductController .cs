@@ -5,6 +5,7 @@ using Bulky.Models;
 using Bulky.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using System;
 using System.Xml.XPath;
 
@@ -98,7 +99,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     _unitOfWork.productRepo.update(productVM.Product);
                 }
 
-                //_unitOfWork.productRepo.Add(productVM.Product);
+                
                 _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
@@ -117,42 +118,32 @@ namespace BulkyWeb.Areas.Admin.Controllers
         }
 
 
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            Product? ProductFromDB = _unitOfWork.productRepo.Get(u => u.Id == id);
-
-            if (ProductFromDB == null)
-            {
-                return NotFound();
-            }
-            return View(ProductFromDB);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePost(int? id)
-        {
-            Product? obj = _unitOfWork.productRepo.Get(u => u.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-
-            _unitOfWork.productRepo.Remove(obj);
-            _unitOfWork.Save();
-
-            return RedirectToAction("Index");
-
-        }
-
         #region API CALLS
         [HttpGet]
-         public IActionResult GetAll() { 
-            List<Product> objProductList = _unitOfWork.productRepo.GetAll(includeProperties:"Category").ToList();
+         public IActionResult GetAll() {
+            List<Product> objProductList = _unitOfWork.productRepo.GetAll(includeProperties: "Category").ToList();
             return Json(new { data = objProductList });
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var productToBeDeleted = _unitOfWork.productRepo.Get(u => u.Id == id);
+            if (productToBeDeleted == null)
+            {
+                return Json(new { success = false, message = "ไม่สามารถลบข้อมูลสินค้านี้ได้" });
+            }
+
+            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToBeDeleted.ImageUrl.TrimStart('\\'));
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+
+            _unitOfWork.productRepo.Remove(productToBeDeleted);
+            _unitOfWork.Save();
+           
+            return Json(new { success = true, message = "ลบข้อมูลสินค้าสำเร็จ" });
         }
         #endregion
 
