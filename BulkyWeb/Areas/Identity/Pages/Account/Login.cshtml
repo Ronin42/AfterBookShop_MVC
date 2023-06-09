@@ -22,22 +22,23 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                         <div class="form-floating mb-3">
                             <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                            <label asp-for="Input.Email" class="form-label">Email</label>
+                            <label asp-for="Input.Email" class="form-label">E-mail</label>
                             <span asp-validation-for="Input.Email" class="text-danger"></span>
                         </div>
                         <div class="form-floating mb-3">
                             <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                            <label asp-for="Input.Password" class="form-label">Password</label>
+                            <label asp-for="Input.Password" class="form-label">รหัสผ่าน</label>
                             <span asp-validation-for="Input.Password" class="text-danger"></span>
                         </div>
                         <div class="checkbox mb-3">
                             <label asp-for="Input.RememberMe" class="form-label">
                                 <input class="form-check-input" asp-for="Input.RememberMe" />
-                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                              @*   @Html.DisplayNameFor(m => m.Input.RememberMe)*@
+                              จดจำผู้ใช้ในอุปกรณ์นี้
                             </label>
                         </div>
                         <div>
-                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">เข้าสู่ระบบ</button>
                         </div>
                         <div class="pt-3">
                             <div class="d-flex justify-content-between pt-2">
@@ -58,19 +59,20 @@
             </div>
             <div class="col-md-12">
                 <section>
-                    <p class="divider-text d-flex ">or</p>
-                    <h3>Use another service to log in.</h3>
+                    <p class="divider-text d-flex ">หรือ</p>
+                    <h3>เข้าสู่ระบบด้วยช่องทางอื่นๆ</h3>
 
                     @{
                         if ((Model.ExternalLogins?.Count ?? 0) == 0)
                         {
                             <div>
-                                <p>
+                               
+                               @* <p>
                                     There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
                                         article
                                         about setting up this ASP.NET application to support logging in via external services
-                                    </a>.
-                                </p>
+                                    </a>. 
+                                </p>*@
                             </div>
                         }
                         else

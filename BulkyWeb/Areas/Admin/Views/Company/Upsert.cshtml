@@ -1,0 +1,103 @@
+﻿@model Company
+
+
+@*<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">*@
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient nl-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@(Model.Id != 0 ? "แก้ไขข้อมูล" : "เพิ่มรายชื่อ")บริษัท@(Model.Id != 0 ? "" : "ใหม่")</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Id" hidden />
+            
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="border p-3">
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Name" class="form-control border-0 shadow" />
+                            <label asp-for="Name" class="ms-2"></label>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="PhoneNumber" class="form-control border-0 shadow" />
+                            <label asp-for="PhoneNumber" class="ms-2"></label>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="StreetAddress" class="form-control border-0 shadow" />
+                            <label asp-for="StreetAddress" class="ms-2"></label>
+                            <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="City" class="form-control border-0 shadow" />
+                            <label asp-for="City" class="ms-2"></label>
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="State" class="form-control border-0 shadow" />
+                            <label asp-for="State" class="ms-2"></label>
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="PostalCode" class="form-control border-0 shadow" />
+                            <label asp-for="PostalCode" class="ms-2"></label>
+                            <span asp-validation-for="PostalCode" class="text-danger"></span>
+                        </div>
+                        
+
+                        <div class="row pt-3">
+                            <div class="col-6 col-md-6 mx-auto">
+                                @if (Model.Id == 0)
+                                {
+                                    <button type="submit" class="btn btn-outline-success form-control">ยืนยันการเพิ่มบริษัทใหม่</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-outline-success form-control">ยืนยันการแก้ไขข้อมูล</button>
+                                }
+
+                            </div>
+                            <div class="col-6 col-md-6 mx-auto">
+                                <a asp-controller="Company" asp-action="Index" class="btn btn-outline-secondary form-control">กลับสู่หน้าเมนู</a>
+                            </div>
+
+                        </div>
+                        <div asp-validation-summary="All"></div> <!-- แสดง inValid ทั้งหมด -->
+                    </div>
+                </div>
+                
+            </div>
+
+        </form>
+
+    </div>
+</div>
+@*        </div>
+    </div>
+</div>*@
+
+
+<!-- โค้ดสำหรับ แสดง invalid แบบ real time-->
+@section Scripts{
+    @{
+        /*https://www.tiny.cloud/my-account/dashboard/ */
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent'
+
+            });
+        </script>
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

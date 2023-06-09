@@ -1,7 +1,9 @@
 ﻿using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace BulkyWeb.Areas.Customer.Controllers
 {
@@ -25,8 +27,40 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         public IActionResult Detail(int productId)
         {
-            Product product = _unitOfWork.productRepo.Get(u=>u.Id== productId,includeProperties: "Category");
-            return View(product);
+            ShoppingCart cart = new()
+            {
+                Product = _unitOfWork.productRepo.Get(u => u.Id == productId, includeProperties: "Category"),
+                Count = 1,
+                ProductId = productId
+            };
+
+           
+            return View(cart);
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult Detail(ShoppingCart shoppingCart)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userid = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            shoppingCart.ApplicationUserId = userid;
+
+            ShoppingCart cartFromDb = _unitOfWork.ShoppingCartRepo.Get(u => u.ApplicationUserId == userid && u.ProductId==shoppingCart.ProductId);
+
+            if(cartFromDb != null)
+            {
+                cartFromDb.Count += shoppingCart.Count;
+                _unitOfWork.ShoppingCartRepo.update(cartFromDb);
+            }
+            else
+            {
+_unitOfWork.ShoppingCartRepo.Add(shoppingCart);
+            }
+
+            TempData["success"] = "อัพเดทตะกร้าสินค้าแล้ว";
+            _unitOfWork.Save();
+
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()

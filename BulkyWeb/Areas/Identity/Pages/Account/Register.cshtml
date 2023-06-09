@@ -46,12 +46,12 @@
                                 </div>
                                 <div class="form-floating mb-3 col-md-6">
                         <input asp-for="Input.City" class="form-control" placeholder="s" />
-                                    <label asp-for="Input.City" class="ms-2 text-muted">City</label>
+                                    <label asp-for="Input.City" class="ms-2 text-muted">เมือง</label>
                                     <span asp-validation-for="Input.City" class="text-danger"></span>
                                 </div>
                                 <div class="form-floating mb-3 col-md-6">
                         <input asp-for="Input.State" class="form-control" placeholder="s" />
-                                    <label asp-for="Input.State" class="ms-2 text-muted">State</label>
+                                    <label asp-for="Input.State" class="ms-2 text-muted">ประเทศ</label>
                                     <span asp-validation-for="Input.State" class="text-danger"></span>
                                 </div>
                                 <div class="form-floating mb-3 col-md-6">
@@ -69,8 +69,13 @@
                             <option disabled selected>--เลือกระดับ--</option>
                         </select>
                     </div>
+                    <div class="form-floating mb-3 col-md-6">
+                        <select asp-for="Input.CompanyId" style="display:none;" asp-items="@Model.Input.CompanyList" class="form-select">
+                            <option disabled selected>--เลือกบริษัท--</option>
+                        </select>
+                    </div>
                     <div class="col-12">
-                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">สมัครสมาชิก</button>
                     </div>
                     
                 </form>
@@ -78,18 +83,18 @@
             <div class="col-md-12">
                 <section>
                     <p class="divider-text d-flex pt-3">or</p>
-                    <h3>Use another service to register.</h3>
+                    <h3>สมัครสมาชิกด้วยช่องทางอื่น</h3>
                     
                     @{
                         if ((Model.ExternalLogins?.Count ?? 0) == 0)
                         {
                             <div>
-                                <p>
+                              @*  <p>
                                     There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
                                         article
                                         about setting up this ASP.NET application to support logging in via external services
                                     </a>.
-                                </p>
+                                </p> *@
                             </div>
                         }
                         else
@@ -118,4 +123,17 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function(){
+            $('#Input_Role').change(function(){
+                var selection = $('#Input_Role Option:Selected').text();
+                if(selection=='Company'){
+                    $('#Input_CompanyId').show();
+                }
+                else{
+                    $('#Input_CompanyId').hide();
+                }
+            })
+        })
+    </script>
 }

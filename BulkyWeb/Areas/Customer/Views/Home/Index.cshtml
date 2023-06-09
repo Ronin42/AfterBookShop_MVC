@@ -17,13 +17,19 @@
                         </div>
                         <div class="pl-1">
                             <p class="text-dark opacity-75 text-center mb-0">
-                                ListPrice:
+                                ราคา:
                                 <span class="text-decoration-line-through">
                                     @product.ListPrice.ToString("c")
                                 </span>
                             </p>
+                            <p class="text-dark opacity-75 text-center mb-0">
+                                เหลือเพียง:
+                                <span>
+                                    @product.Price.ToString("c")
+                                </span>
+                            </p>
                             <p class="text-dark opacity-75 text-center">
-                                As Low as:
+                                ลดสูงสุด:
                                 <span>
                                     @product.Price100.ToString("c")
                                 </span>

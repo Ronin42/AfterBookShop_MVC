@@ -1,10 +1,9 @@
-﻿@model List<Product>
-
+﻿
 <div class="card shadow border-0 my-4">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white py-2">ตารางจัดการข้อมูลสินค้า</h2>
+                <h2 class="text-white py-2">ตารางจัดการข้อมูลบริษัท</h2>
             </div>
         </div>
     </div>
@@ -13,8 +12,8 @@
             <div class="col-6">
             </div>
             <div class="col-6 text-end">
-                <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i>  เพิ่มสินค้าใหม่
+                <a asp-controller="Company" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>  เพิ่มบริษัทใหม่
                 </a>
             </div>
         </div>
@@ -22,11 +21,12 @@
         <table id="tblData" class="table table-bordered table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>ชื่อหนังสือ</th>
-                    <th>ISBN</th>
-                    <th>ราคา</th>
-                    <th>ชื่อผู้แต่ง</th>
-                    <th>หมวดหมู่</th>
+                    <th>ชื่อบริษัท</th>
+                    <th>ถนน</th>
+                    <th>เมือง</th>
+                    <th>ประเทศ</th>
+                    <th>รหัสไปรษณีย์</th>
+                    <th>เบอร์โทรศัพท์</th>
                     <th></th>
                 </tr>
             </thead>
@@ -37,6 +37,6 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/Product.js"></script>
+    <script src="~/js/Company.js"></script>
 
 }

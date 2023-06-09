@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Bulky.Utillity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LogoutPath = $"/Identity/Account/Logout";
     options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 });
+
+builder.Services.Configure<StripeSetting>(builder.Configuration.GetSection("Stripe")); //#StripeAPI
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(); //#UnitOfWork
 builder.Services.AddScoped<IEmailSender, EmailSender>(); //#EmailSender
@@ -41,6 +44,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication(); //#Identity for go to some pages base on admin , user , visitor
+
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
 app.MapRazorPages();
 

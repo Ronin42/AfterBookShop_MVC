@@ -17,6 +17,14 @@ namespace Bulky.DataAccess.Repository
 
         public ICompanyRepository CompanyRepo { get; private set; }
 
+        public IShoppingCartRepository ShoppingCartRepo { get; private set; }
+
+        public IApplicationUserRepository ApplicationUserRepo { get; private set; }
+
+        public IOrderDetailRepository OrderDetailRepo { get; private set; }
+
+        public IOrderHeaderRepository OrderHeaderRepo { get; private set; }
+
         //get; private set;: การกำหนดการเข้าถึงค่าของคุณสมบัติ productRepo โดยมีการกำหนด
         //get ให้สามารถอ่านค่าได้
         //และ private set ที่บังคับให้สามารถกำหนดค่าได้เฉพาะภายในคลาสเท่านั้น นั่นหมายความว่าค่าของ productRepo สามารถเข้าถึงได้จากภายนอก
@@ -28,6 +36,10 @@ namespace Bulky.DataAccess.Repository
             CategoryRepo = new CategoryRepository(_db);
             productRepo= new ProductRepository(_db);
             CompanyRepo = new CompanyRepository(_db);
+            ShoppingCartRepo = new ShoppingCartRepository(_db);
+            ApplicationUserRepo = new ApplicationUserRepository(_db);
+            OrderDetailRepo= new OrderDetailRepository(_db);
+            OrderHeaderRepo= new OrderHeaderRepository(_db);
         }
       
 
